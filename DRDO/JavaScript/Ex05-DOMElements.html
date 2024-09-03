@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const addFunc = (v1,v2) => v1 + v2;
+        const subtractFunc = (v1,v2) => v1 - v2;
+        const multiplyFunc = (v1,v2) => v1 * v2;
+        const divideFunc = (v1,v2) => v1 / v2;
+        const sqrFunc = (v1) => v1 * v1;
+        const sqrtFunc = (v1) => Math.sqrt(v1);
+        
+        const onChange = () => {
+            const selectedOperation = document.querySelector("select").value;
+            if(selectedOperation == "Square" || selectedOperation == "SquareRoot"){
+                document.getElementById("txtSecond").disabled = true;
+            }else{
+                document.getElementById("txtSecond").disabled = false;
+            }
+        }
+
+        function performOperation()
+        {
+            const firstValue = parseFloat(document.getElementById('txtFirst').value)
+            const secondValue = parseFloat(document.getElementById('txtSecond').value)
+            const outputEl = document.getElementById("output");
+            switch(document.getElementById("operation").value)
+            {
+                case "Add":
+                    outputEl.innerText = addFunc(firstValue,secondValue);
+                    break;
+                case "Subtract":
+                    outputEl.innerText = subtractFunc(firstValue,secondValue);
+                    break;
+                case "Multiply":
+                    outputEl.innerText = multiplyFunc(firstValue,secondValue);
+                    break;
+                case "Divide":
+                    outputEl.innerText = divideFunc(firstValue,secondValue);
+                    break;
+                case "Square":
+                    outputEl.innerText = sqrFunc(firstValue);
+                    break;
+                case "SquareRoot":
+                    outputEl.innerText = sqrtFunc(firstValue);
+                    break;
+                default:
+                    outputEl.innerText = "Please Select Valid Operation";
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <p>First Value: <input type="text" id="txtFirst"></p>
+        <p>Second Value: <input type="text" id="txtSecond"></p>
+        <p>
+            <select id="operation" onchange="onChange()">
+                <option value="">Select Operation</option>
+                <option value="Add">Add</option>
+                <option value="Subtract">Subtract</option>
+                <option value="Multiply">Multiply</option>
+                <option value="Divide">Divide</option>
+                <option value="Square">Square</option>
+                <option value="SquareRoot">SquareRoot</option>
+            </select>
+            <button onclick="performOperation()">Calculate</button>
+        </p>
+        <p>Output: <span id="output"></span></p>
+        
+    </div>
+    
+
+</body>
+</html>

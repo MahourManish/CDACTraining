@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./Ex07-ClassRepo.js"></script>
+    <link rel="stylesheet" href="./src/css/bootstrap.min.css">
+    <style>
+        button {margin: 0px 5px}
+        h1, .formgroup {margin: 20px 20px;}
+    </style>
+    <script>
+        let database = new MovieDatabase();
+        add = () => {
+            const m = new Movie(document.getElementById("txtId").value,document.getElementById("txtTitle").value,document.getElementById("txtDirector").value);
+            const test = database.getById(m.id)
+            if(test == undefined){
+                database.addMovie(m);
+            }
+            else{
+                database.modifyMovie(m.id,m)
+            }
+            updateTable();
+        }
+
+        const deleteRow = (id) => {
+            database.modifyMovie(id)
+            updateTable();
+        }
+
+        const editRow = (id) => {
+            document.getElementById("addbtn").innerText = "Update";
+            const row = database.getById(id)
+            document.getElementById("txtId").value = row.id;
+            document.getElementById("txtTitle").value = row.title;
+            document.getElementById("txtDirector").value = row.director;
+        }
+
+        updateTable = () => {
+            const tblBody = document.querySelector('tbody');
+            tblBody.innerHTML = "";
+            database.movies.forEach(a => {
+                let tr = document.createElement("tr")
+                for (const key in a) {
+                    let td = document.createElement("td")
+                    td.innerText = a[key]
+                    tr.appendChild(td);    
+                }
+                let actiontd = document.createElement("td")
+                let editBtn = document.createElement("button")
+                editBtn.setAttribute("onclick","alert('echo')");
+                editBtn.setAttribute("onclick",`editRow(${a.id})`);
+                editBtn.setAttribute("class","btn btn-sm btn-primary");
+                editBtn.innerText = "Edit";
+                actiontd.appendChild(editBtn);
+
+                let delBtn = document.createElement("button")
+                delBtn.setAttribute("onclick",`deleteRow(${a.id})`);
+                delBtn.setAttribute("class","btn btn-sm btn-danger");
+                delBtn.innerText = "Delete";
+                actiontd.appendChild(delBtn);
+                tr.appendChild(actiontd);
+                tblBody.appendChild(tr)
+
+            });
+
+            document.getElementById("txtId").value = parseFloat(database.getMaxId())+1;
+            document.getElementById("txtTitle").value = "";
+            document.getElementById("txtDirector").value = "";
+            document.getElementById("addbtn").innerText = "Add";
+
+        }
+
+        window.addEventListener("load",function(){ updateTable(); })
+    </script>
+</head>
+<body>
+    <h1 class="text-center">Welcome to Movie Database Management</h1>
+    <hr>
+    <div class="container">
+        <div class="row formgroup">
+            <div class="col-md-3">
+                <input class="form-control" type="number" id="txtId" placeholder="ID" disabled>
+            </div>
+            <div class="col-md-3">
+                <input class="form-control" type="text" id="txtTitle" placeholder="Title">
+            </div>
+            <div class="col-md-3">
+                <input class="form-control" type="text" id="txtDirector" placeholder="Director">
+            </div>
+            <div class="col-md-3">
+                <button id="addbtn" class="btn btn-primary" onclick="add()">Add/Update Movie</button>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <h3>List of Movies</h3>
+            <hr>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Director</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody  class="table-group-divider"></tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

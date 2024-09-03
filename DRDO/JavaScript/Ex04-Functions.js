@@ -21,7 +21,7 @@ const getAll = () => items;
 const getById = (id) => items.find((e) => e.id == id);
 
 function updateRecord(item){
-    const selectedIndex = items.findIndex((e) => e.id == id);
+    const selectedIndex = items.findIndex((e) => e.id == item.id);
     if (selectedIndex < 0)
         alert("No item found to update");
     else {
