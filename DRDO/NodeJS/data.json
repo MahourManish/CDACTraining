@@ -1,12 +1,4 @@
-{
-  "movies": [
-    {
-      "id": "1",
-      "title": "Harry Potter",
-      "director": "Chris Columbus"
-    }
-  ],
-  "novels": [{
+[{
     "id": 1,
     "title": "The Great Gatsby",
     "author": "Emory Milella",
@@ -507,4 +499,3 @@
     "author": "Debbie Lusher",
     "genre": "Fantasy"
   }]
-}
