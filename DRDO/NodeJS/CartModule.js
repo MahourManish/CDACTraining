@@ -9,7 +9,7 @@ module.exports = (() =>{
         cart.forEach(a => mx = mx<a.id?a.id:mx)
         return mx;                                                            
     }
-    deleteItem = (id) => {
+    const deleteItem = (id) => {
         
     }
     const totalBill = () => {

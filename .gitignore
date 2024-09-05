@@ -1,2 +1,2 @@
 .vscode/*
-DRDO/DatabaseServer/node_modules/
+**/node_modules/
