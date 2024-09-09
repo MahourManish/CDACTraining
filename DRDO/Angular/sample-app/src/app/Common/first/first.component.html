@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div style="border: 2px solid coral; padding: 10px;border-radius: 10px;background-color: lightcoral;">
+                <h2>Mr. {{name | uppercase}}</h2>
+                <hr>
+                <p>Address: {{address}}</p>
+                <p>DOB: {{dob | date: 'dd MMM yyyy'}}</p>
+                <p>Salary: {{salary | currency}} per month</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+

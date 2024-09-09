@@ -1,0 +1,19 @@
+<h1>Binding Example</h1>
+<hr>
+<p>(ngModel)<br/>
+Enter Some Value: <input [(ngModel)] = "data"/> </p>
+<p>Simple Paragraph<br/>
+    {{data}}</p>
+<p>Interpolation<br/>
+    Value: <input value = {{data}}/></p>
+<p>Property Binding<br/>
+    Value: <input (keyup)="onUpdate($event)" [value] = data/></p>
+
+    <p>(ngModel)<br/>
+        Enter URL: <input [(ngModel)] = "fileURL"/> </p>
+    <img [src]="fileURL"/>
+
+    <input [(ngModel)] = "clsbtn"/>
+    <p><button (click)="clickButton()" [class]="clsbtn">Change Style
+
+    </button></p>

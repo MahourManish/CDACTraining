@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./src/css/bootstrap.min.css">
+    <style>
+        button {margin: 0px 5px}
+        h1, .formgroup {margin: 20px 20px;}
+    </style>
+    <script src="./Ex10-FetchApi_2.js"></script>
+    <script>
+        window.addEventListener("load", () => { loadData(); })
+    </script>
+
+</head>
+<body>
+    <h1 class="text-center">Welcome to Employee Database Management</h1>
+    <hr>
+    <div class="container">
+        <div class="row formgroup">
+            <input type="hidden" id="txtId" placeholder/>
+            <div class="form-group col-md-3">
+                <input class="form-control" type="text" id="txtName" placeholder="Name">
+            </div>
+            <div class="form-group col-md-3">
+                <input class="form-control" type="text" id="txtAddress" placeholder="Address">
+            </div>
+            <div class="form-group col-md-3">
+                <input class="form-control" type="text" id="txtSalary" placeholder="Salary">
+            </div>
+            <div class="form-group col-md-3">
+                <button id="addbtn" class="btn btn-primary" onclick="add()">Add</button>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <table class="table table-bordered table-striped">
+                <thead class="bg-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Salary</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
