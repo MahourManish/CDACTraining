@@ -1,0 +1,14 @@
+<div class="main">
+    <h1>Calculator Program</h1>
+    <p>Enter First Value: <input type=number [(ngModel)]="fVal" placeholder="First Value"/></p>
+    <p>Enter Second Value: <input type=number [(ngModel)]="sVal" placeholder="Second Value"/></p>
+    <p>Select Operation: 
+        <select [(ngModel)]="operation">
+            <option *ngFor="let i of opList" [ngValue]="i.id">{{i.name}}</option>
+        </select>
+        <button (click)="Calculate()">Calculate</button>
+    </p>
+    <p>Result: {{res}}</p>
+    
+</div>
+

@@ -1,0 +1,20 @@
+<div class="card">
+    <img class="card-img-top" src="images/{{movie.poster}}" style="object-fit: cover;height:50vh"/>
+    <div class="card-body">
+        <h5 class="card-title">{{movie.title}}</h5>
+        <div *ngIf="editM">
+            <p><input class="form-control" [(ngModel)]="tempMovie.director"/></p>
+            <p><input class="form-control" [(ngModel)]="tempMovie.year"/></p>
+            <p><input class="form-control" [(ngModel)]="tempMovie.genre"/></p>
+            <p>
+                <button (click)="saveData()" class="btn btn-primary btn-sm mx-1"><i class="fa fa-save"></i></button>
+                <button (click)="closeAction()" class="btn btn-danger btn-sm mx-1"><i class="fa fa-close"></i></button>
+            </p>
+        </div>
+        <p *ngIf="!editM" class="card-text">{{movie.director}}<br/>{{movie.year}}, {{movie.genre}}</p>
+        <p *ngIf="!editM">
+            <button (click)="editMode()" class="btn btn-primary btn-sm mx-1"><i class="fa fa-pencil"></i></button>
+            <button (click)="deleteRecord()"class="btn btn-danger btn-sm mx-1"><i class="fa fa-trash"></i></button>
+        </p>
+    </div>
+</div>

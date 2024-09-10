@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="row">
+        <h3>{{title}}</h3>
+    </div>
+    <div class="row">
+        <p><input class="form-control" [(ngModel)]="searchValue" placeholder="Search by Title, Director, Genre"/></p>
+        <div class="col-sm-3 my-2" *ngFor="let m of movieList | filterMovie: searchValue">
+            <app-movie-detail [movie]="m" (updateMovie)="updateMovie($event)" (deleteMovie)="deleteMovie($event)" ></app-movie-detail>
+        </div>
+    </div>
+</div>
+
