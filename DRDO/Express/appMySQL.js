@@ -12,20 +12,26 @@ const db = mysql.createConnection({
     database: 'SampleDB'
 });
 app.use(cors());
-
 app.use(express.json())
 
 db.connect(e => {
     if(e){
-        console.error("Not Connected");
+        console.error(e.message);
         return;
     }
-    console.error("Connected to Database");
+    console.log("Connected to Database");
 })
 
+
+const getAllQry = "Select * from Employee";
+const getOneQry = "Select * from Employee Where id = ?";
+const insertQry = "insert into Employee(name, address, salary, empPic) values(?,?,?,?)";
+const updateQry = "update Employee set name = ?, address = ?, salary = ?, empPic = ? where id = ?";
+const deleteQry = `delete from  Employee where id = ?`;
+    
+
 app.get("/employees",(req, res) => {
-    const query = "Select * from Employee";
-    db.query(query, (e,r) => {
+    db.query(getAllQry, (e,r) => {
         if(e) return res.status(500).json({error: e.message});
         res.json(r);
     })
@@ -33,8 +39,7 @@ app.get("/employees",(req, res) => {
 
 app.get("/employees/:id",(req, res) => {
     const {id} = req.params
-    const query = `Select * From Employee Where id = ${id}`;
-    db.query(query, (e,r) => {
+    db.query(getOneQry,id, (e,r) => {
         if(e) return res.status(500).json({error: e.message});
         if(r.length == 0){
             return res.status(404).json({message: 'Record not found'})
@@ -44,9 +49,8 @@ app.get("/employees/:id",(req, res) => {
 })
 
 app.post("/employees",(req,res) => {
-    const {name, address, salary} = req.body;
-    const query = "insert into Employee(name, address, salary) values(?,?,?)";
-    db.query(query,[name, address, salary],(e,r) => {
+    const {name, address, salary, empPic} = req.body;
+    db.query(insertQry,[name, address, salary, empPic],(e,r) => {
         if(e) return res.status(500).json({error: e.message});
         res.json({id: r.insertId, name: name, address: address, salary: salary});
     })
@@ -55,8 +59,8 @@ app.post("/employees",(req,res) => {
 app.put("/employees/:id",(req,res) => {
     const {id} = req.params;
     const {name, address, salary} = req.body;
-    const query = "update Employee set name = ?, address = ?, salary = ? where id = ?";
-    db.query(query,[name, address, salary, id],(e,r) => {
+    
+    db.query(updateQry,[name, address, salary, id],(e,r) => {
         if(e) return res.status(500).json({error: e.message});
         if(r.affectedRows == 0){
             return res.status(404).json({message: 'Record not found'})
@@ -67,8 +71,7 @@ app.put("/employees/:id",(req,res) => {
 
 app.delete("/employees/:id",(req,res) => {
     const {id} = req.params;
-    const query = `delete from  Employee where id = ${id}`;
-    db.query(query,(e,r) => {
+    db.query(deleteQry,(e,r) => {
         if(e) return res.status(500).json({error: e.message});
         if(r.affectedRows == 0){
             return res.status(404).json({message: 'Record not found'})
