@@ -1,1 +1,38 @@
-<p>emp-add works!</p>
+
+<div class="flex">
+    <div class="col">
+        <div class="field">
+            <label>Name</label>
+            <input type="text" [(ngModel)]="emp.name" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+        <div class="field">
+            <label>Address</label>
+            <input type="text" [(ngModel)]="emp.address" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+        <div class="field">
+            <label>Salary</label>
+            <input type="text" [(ngModel)]="emp.salary" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+        <div class="field">
+            <label>Employee Pic</label>
+            <input type="text" [(ngModel)]="emp.empPic" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+        <div class="field">
+            <p-button label="Save" (onClick)="action()" />&nbsp;
+            <p-button label="Back" routerLink="/emp-list"  severity="secondary" />
+        </div>
+
+    </div>
+    <div class="col" style="text-align: center;margin-top:20px">
+        <div>
+            <h1>Upload an Image</h1>
+            <input type="file" (change)="onFileChange($event)" />
+            <button (click)="uploadFile()">Upload</button>
+            <p>{{ uploadStatus }}</p>
+            
+        </div>
+    </div>
+    
+</div>
+
+ 

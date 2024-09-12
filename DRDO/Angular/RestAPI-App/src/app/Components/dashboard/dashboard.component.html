@@ -1,0 +1,14 @@
+<div class="px-4 py-5">
+    <div class="grid">
+            @for(emp of empList; track emp.id){
+            <div class="col-2">
+                <div class="shadow-2 p-3 border-round">
+                    <div class="text-center">
+                        <img  src="images/{{emp.empPic}}" width="100%">
+                    </div>
+                    <h3>{{emp.name}}, {{emp.address}}</h3>
+                </div>
+            </div>
+        }
+    </div>
+</div>
