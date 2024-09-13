@@ -1,0 +1,25 @@
+<div class="row"><h1>View Customer</h1><hr></div>
+<div class="row m-10" style="color: red">{{errorText}}</div>
+<div class="row">
+    <div class="form-group col-md-6">
+        <label>ID</label>
+        <input class="form-control" disabled [(ngModel)]="obj.id"/>
+    </div>
+    <div class="form-group col-md-6">
+        <label>Name</label>
+        <input class="form-control" [(ngModel)]="obj.name" required/>
+    </div>
+    <div class="form-group col-md-6">
+        <label>Address</label>
+        <input class="form-control" [(ngModel)]="obj.address" required/>
+    </div>
+    <div class="form-group col-md-6">
+        <label>Age</label>
+        <input type="number" class="form-control" [(ngModel)]="obj.age" required/>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="form-group col-md-6">
+        <button class="btn btn-primary" (click)="action()">Save</button>
+    </div>
+</div>

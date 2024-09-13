@@ -1,0 +1,31 @@
+<form [formGroup]="empForm">
+    <div>
+        <label for="name">Enter the name</label>
+        <input type="text" id="name" formControlName="name"/>
+        <div *ngIf="empForm.controls['name']?.invalid && empForm.controls['name']?.touched">
+            <small *ngIf="empForm.controls['name']?.errors?.['required']">Name is mandatory</small>
+            <small *ngIf="empForm.controls['name']?.errors?.['minlength']">Length should be more than 2</small>
+        </div><br/>
+        <label for="email">Enter the Email</label>
+        <input type="email" id="email" formControlName="email"/>
+        <div *ngIf="empForm.controls['email']?.invalid && empForm.controls['email']?.touched">
+            <small *ngIf="empForm.controls['email']?.errors?.['required']">email is mandatory</small>
+            <small *ngIf="empForm.controls['email']?.errors?.['email']">Email format is not correct</small>
+        </div><br/>
+        <label for="mobileNo">Enter the Mobile No</label>
+        <input type="text" id="mobileNo" formControlName="mobileNo"/>
+        <div *ngIf="empForm.controls['mobileNo']?.invalid && empForm.controls['mobileNo']?.touched">
+            <small *ngIf="empForm.controls['mobileNo']?.errors?.['required']">Mobile No is mandatory</small>
+            <small *ngIf="empForm.controls['mobileNo']?.errors?.['minlength']">Mobile No should be 10 digits</small>
+            <small *ngIf="empForm.controls['mobileNo']?.errors?.['maxlength']">Mobile No should be 10 digits</small>
+        </div><br/>
+        <label for="salary">Enter the Salary</label>
+        <input type="number" id="salary" formControlName="salary"/>
+        <div *ngIf="empForm.controls['salary']?.invalid && empForm.controls['salary']?.touched">
+            <small *ngIf="empForm.controls['salary']?.errors?.['required']">Salary is mandatory</small>
+            <small *ngIf="empForm.controls['salary']?.errors?.['max']">Salary should not be more than 50000</small>
+            <small *ngIf="empForm.controls['salary']?.errors?.['min']">Salary should not be less than 25000</small>
+        </div><br/>
+        <button [disabled]="empForm.invalid" (click)="onSubmit()" >Save</button>
+    </div>
+</form>

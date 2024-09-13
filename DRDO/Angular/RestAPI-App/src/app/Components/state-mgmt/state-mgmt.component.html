@@ -1,0 +1,21 @@
+<div class="container">
+    <h2>My Records</h2>
+    <hr>
+    <div class="grid">
+        <div class="col-2" *ngFor="let rec of myData | async">
+            <h2>{{rec.name}}</h2>
+            <hr>
+            <p>Amount: {{rec.amount | currency: 'INR'}}</p>
+            <p>Record ID: {{rec.id}}</p>
+            <button class="mx-2" pButton (click)="onUpdate(rec.id)" icon="pi pi-pencil"></button>
+            <button pButton icon="pi pi-trash" class="p-button-danger" (click)="onDelete(rec.id)"></button>
+        </div>
+    </div>
+    <div class="grid m-2">
+        <div class="col-md-6">
+            <p>Name: <br/><input pInputText type="text" [(ngModel)]="newRec.name"/></p>
+            <p>Amount: <br/><input pInputText type="text" [(ngModel)]="newRec.amount" /></p>
+            <p><button pButton (click)="addRecord()" >Save</button></p>
+        </div>
+    </div>
+</div>

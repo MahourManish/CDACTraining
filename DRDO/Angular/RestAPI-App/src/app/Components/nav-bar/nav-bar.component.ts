@@ -25,10 +25,10 @@ export class NavBarComponent implements OnInit {
     this.items = [
       {label: 'Home', icon: 'pi pi-home', routerLink: '/'},
       {label: 'Employee List', icon: 'pi pi-list', routerLink: '/emp-list'},
-      {
-        label: 'Add Employee',
-        icon: 'pi pi-plus-circle',
-        routerLink: '/emp-add'},
+      {label: 'Add Employee', icon: 'pi pi-plus-circle', routerLink: '/emp-add'},
+      {label: 'State Management', icon: 'pi pi-shop', routerLink: '/state-mgmt'},
+      {label: 'Template Form', icon: 'pi pi-list', routerLink: '/template-form'},
+      {label: 'Reactive Form', icon: 'pi pi-list', routerLink: '/reactive-form'},
     ]
   }
 
